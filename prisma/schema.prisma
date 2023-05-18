@@ -1,0 +1,100 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+
+  Order Orders[]
+  Cart  Carts?
+
+  @@map("users")
+}
+
+model Products {
+  id          Int      @id @default(autoincrement())
+  name        String
+  imageUrl    String
+  details     Json?
+  brand       String?
+  category    String
+  price       Float
+  stock       Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  Items     OrderItems[]
+  CartItems CartItems[]
+
+  @@map("products")
+}
+
+model Orders {
+  id        Int      @id @default(autoincrement())
+  total     Float
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId Int
+  user   Users @relation(fields: [userId], references: [id])
+
+  Items OrderItems[]
+
+  @@map("orders")
+}
+
+model OrderItems {
+  id        Int      @id @default(autoincrement())
+  quantity  Int
+  price     Float
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  orderId Int
+  Order   Orders @relation(fields: [orderId], references: [id])
+
+  productId Int
+  Product   Products @relation(fields: [productId], references: [id])
+
+  @@map("orderItems")
+}
+
+model Carts {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId Int   @unique
+  User   Users @relation(fields: [userId], references: [id])
+
+  Items CartItems[]
+
+  @@map("carts")
+}
+
+model CartItems {
+  id        Int      @id @default(autoincrement())
+  quantity  Int
+  price     Float
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  cartId Int
+  Cart   Carts @relation(fields: [cartId], references: [id])
+
+  productId Int
+  Product   Products @relation(fields: [productId], references: [id])
+
+  @@map("cartItems")
+}
