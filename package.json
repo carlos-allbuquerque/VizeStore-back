@@ -8,6 +8,9 @@
     "start": "ts-node src/index.ts",
     "dev": "nodemon src/index.ts"
   },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },   
   "keywords": [],
   "author": "",
   "license": "ISC",
