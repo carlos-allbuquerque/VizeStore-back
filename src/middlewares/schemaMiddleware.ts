@@ -7,7 +7,7 @@ export function validateSchemaMiddleware(schema: ObjectSchema) {
     if (validation.error) {
       return res.status(422).send({ error: validation.error.message });
     }
-    
+
     next();
   };
 }
