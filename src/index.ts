@@ -3,11 +3,14 @@ import 'express-async-errors';
 import handleErrorsMiddleware from './middlewares/errorHandlerMiddleware.js';
 import router from './routes/index.js';
 import dotenv from 'dotenv';
+import cors from "cors"
 
 dotenv.config({ path: '.env' });
 const app = express();
 
 app.use(json());
+app.use(cors());
+
 app.use(router);
 app.use(handleErrorsMiddleware);
 
