@@ -16,6 +16,7 @@ async function main() {
   const products = productsFactory();
 
   const product = await prisma.products.createMany({ data: products });
+  console.log(`Created ${product.count} products`);
 }
 
 main()
@@ -30,15 +31,15 @@ function productsFactory() {
   const products: createProductData[] = [
     //monitors
     {
-      name: "MONITOR GAMER SAMSUNG ODYSSEY G30, 24 POL VA, FHD, 1MS, 144HZ, FREESYNC, HDMI/DP, LS24BG300ELMZD",
+      name: "MONITOR GAMER SAMSUNG ODYSSEY",
       imageUrl:
-        "https://media.pichau.com.br/media/catalog/product/cache/ef72d3c27864510e5d4c0ce69bade259/l/s/ls24bg300elmzd0111020.jpg",
+        "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcS_0_Aqb5E45yewvXSdBRCEEH2oOuDkVKsT6asvjdeeFQdsgwPEcBs9hb7hpwPLYur0Jc4GfgQv6iofsU4__v_UXLeOmleW6_KDx4K9iekndchwUwJKtG1A_w&usqp=CAE",
       category: "monitors",
       price: 1249.9,
       stock: 10,
     },
     {
-      name: "Monitor Gamer Mancer Horizon Z PRO, 27 Pol. VA, FHD, 1ms, 165Hz, FreeSync, HDMI/DP, MCR-HZNP27-BL01",
+      name: "Monitor Gamer Mancer ",
       imageUrl:
         "https://m.media-amazon.com/images/I/61gPM2ZBGFL._AC_SX679_.jpg",
       category: "monitors",
@@ -47,7 +48,7 @@ function productsFactory() {
     },
     //GPUs
     {
-      name: "Placa de Vídeo RTX 3070 MSI Ventus 3X Plus NVIDIA GeForce, 8GB GDDR6, LHR, DLSS, Ray Tracing - GeForce RTX 3070 VENTUS 3X PLUS 8G OC LHR",
+      name: "Placa de Vídeo RTX 3070",
       imageUrl:
         "https://images.kabum.com.br/produtos/fotos/377636/placa-de-video-msi-nvidia-geforce-rtx-3070-ventus-3x-plus-8gb-gddr6-lhr-dlss-ray-tracing-geforce-rtx-3070-ventus-3x-plus-8g-oc-lhr-_1663095435_gg.jpg",
       category: "GPUs",
@@ -55,7 +56,7 @@ function productsFactory() {
       stock: 10,
     },
     {
-      name: "Placa de Video Geforce Rtx 3060 Gaming X, 12gb, Gddr6, 192-bit, 912-v397-019, Modelo: V397-019R",
+      name: "Placa de Video Geforce Rtx 3060",
       imageUrl:
         "https://m.media-amazon.com/images/I/811sBakp3+L._AC_SX679_.jpg",
       category: "GPUs",
