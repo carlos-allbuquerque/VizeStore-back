@@ -14,7 +14,6 @@ import {
 
 export async function createUser(user: CreateUserData) {
   const userExists = await userRepository.getUserByEmail(user.email);
-  console.log(userExists);
   if (userExists) {
     throw conflictError();
   }
